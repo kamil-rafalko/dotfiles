@@ -1,0 +1,54 @@
+---
+- name: Playbook to manage dotfiles
+  hosts: localhost
+  connection: local
+  vars:
+    the_user: "{{ ansible_user_id }}"
+  tasks:
+    - name: Create tempdir
+      tempfile:
+        state: directory
+      register: kitty_tempdir
+      delegate_to: localhost
+      run_once: True
+    - name: Get Kitty
+      get_url:
+        url: "https://github.com/kovidgoyal/kitty/releases/download/v0.25.0/kitty-0.25.0-x86_64.txz"
+        dest: "{{ kitty_tempdir.path }}"
+      delegate_to: localhost
+
+    - name: ensure directory exists
+      file:
+       path: ~/.local/kitty.app
+       state: directory
+
+    - unarchive:
+        src: "{{ kitty_tempdir.path }}/kitty-0.25.0-x86_64.txz"
+        dest: ~/.local/kitty.app
+
+    - name: Delete tempdir
+      file:
+        path: "{{ kitty_tempdir.path }}"
+        state: absent
+      delegate_to: localhost
+
+    - name: Create desktop icon 
+      template:
+        src: templates/kitty-desktop.j2
+        dest: ~/.local/share/applications/kitty.desktop
+    
+    - name: Install zsh
+      apt:
+        name: zsh
+      become: yes
+
+    - name: Get zsh location
+      command: "which zsh"
+      register: zsh_location
+
+    - name: Make zsh default shell
+      become: yes
+      user:
+        name: "{{ the_user }}"
+        shell: "{{ zsh_location.stdout }}"
+
