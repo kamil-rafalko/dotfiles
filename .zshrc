@@ -56,7 +56,8 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/Users/kamilr/.nvm/versions/node/v20.13.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
 
-alias nvim="$HOME/bin/nvim-macos-your-version/bin/nvim"
+alias nvim="$HOME/bin/nvim-macos-arm64/bin/nvim"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME
 
 # include .bashrc_aliases if it exists
 if [ -f $HOME/.additional_env_vars ]; then
