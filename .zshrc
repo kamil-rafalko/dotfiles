@@ -38,7 +38,7 @@ function bzl_test_fn() {
  mbzl test --color=yes --curses=yes --test_summary=short $@ |& ~/src/misc/format_test_output --default
 }
 
-export GOROOT="/opt/homebrew/opt/go@1.23/libexec/"
+export GOROOT="/Users/kamilr/go/go1.23.12"
 export PATH=$PATH:$GOROOT/bin
 
 # Set GOPATH
@@ -56,7 +56,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/Users/kamilr/.nvm/versions/node/v20.13.1/bin:$PATH"
 export PATH="/opt/homebrew/opt/go@1.23/bin:$PATH"
 
-alias nvim="$HOME/bin/nvim-macos-arm64/bin/nvim"
+alias nvim="/opt/homebrew/opt/nvim/bin/nvim"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # include .bashrc_aliases if it exists
