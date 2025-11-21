@@ -4,6 +4,12 @@ padding.y = 14
 decorations = "none" # Removes the window decoration (title bar, etc.)
 startup_mode = "Fullscreen"
 
+[keyboard]
+bindings = [
+  { key = "Right", mods = "Alt", chars = "\u001BF" },
+  { key = "Left",  mods = "Alt", chars = "\u001BB" },
+]
+
 [font]
 size = 16
 
